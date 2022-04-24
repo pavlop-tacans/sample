@@ -1,8 +1,28 @@
-# sample
-sample
+# concordium-net-sdk
 
-## GetAccountInfoAsync
-Retrieves information about a state of account corresponding to `accountAddress` and `blockHash`. 
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](https://github.com/Concordium/.github/blob/main/.github/CODE_OF_CONDUCT.md)
+
+Represents an API wirten on C# for interacting with the [Concordium Node](https://github.com/Concordium/concordium-node).
+
+# ConcordiumNodeClient
+
+The `ConcordiumNodeClient` is the main entrypoint for the SDK. It defines the api to be used to send and receive data from
+the [Concordium Node](https://github.com/Concordium/concordium-node).
+
+## Creating a client
+The current `ConcordiumNodeClient` setup only allows for insecure connections, which can be set up in the following way.
+The access is controlled by the [Connection](https://github.com/Concordium/concordium-node).
+```csharp
+Connection connection = new Connection
+{
+    Address = "http://localhost:10001",
+    AuthenticationToken = "rpcadmin"
+};
+ConcordiumNodeClient concordiumNodeClient = new ConcordiumNodeClient(connection);
+```
+
+## Get account info
+`GetAccountInfoAsync` retrieves information about a state of account corresponding to `accountAddress` and `blockHash`. 
 
 ```csharp
 public async Task<AccountInfo?> GetAccountInfoAsync(string accountAddress, string blockHash);
